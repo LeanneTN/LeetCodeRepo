@@ -1,4 +1,4 @@
-package array;
+package elementary.array;
 
 public class PlusOne {
     public int[] plusOne(int[] digits) {

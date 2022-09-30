@@ -1,4 +1,4 @@
-package array;
+package elementary.array;
 
 public class RemoveElement {
     public int removeElement(int[] nums, int val) {

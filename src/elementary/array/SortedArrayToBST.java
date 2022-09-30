@@ -1,4 +1,4 @@
-package array;
+package elementary.array;
 
 class TreeNode {
     int val;
