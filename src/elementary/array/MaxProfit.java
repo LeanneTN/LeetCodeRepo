@@ -21,7 +21,7 @@ public class MaxProfit {
             return 0;
         }
 
-        //stock's state:  state 0: cash   state 1: stock
+        //stock's state:  state 0: cash   state 1: stock0
         //cash: cash we have in day i and stock state is j
         int[][] cash = new int[len][2];
         // initial state
