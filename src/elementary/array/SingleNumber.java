@@ -19,4 +19,12 @@ public class SingleNumber {
         }
         return 0;
     }
+
+    public int singleNumber2(int[] nums){
+        int single = 0;
+        for (int num : nums) {
+            single ^= num;
+        }
+        return single;
+    }
 }
