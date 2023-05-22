@@ -57,6 +57,46 @@ public class MinFallingPathSum {
         return val;
     }
 
+    public static int minFallingPathSum3(int[][] grid){
+        int n = grid.length;
+        int[][] dp = new int[n][n];
+        int i1 = -1, i2 = -1;
+        for (int i = 0; i < n; i++){
+            int val = grid[0][i];
+            if (val < (i1 == -1 ? Integer.MAX_VALUE : dp[0][i])){
+                i2 = i1;
+                i1 = i;
+            }else if (val < (i2 == -1 ? Integer.MAX_VALUE : dp[0][i2])){
+                i2 = i;
+            }
+        }
+        for (int i = 1; i < n; i++){
+            int ti1 = -1, ti2 = -1;
+            for (int j = 0; j < n; j++){
+                dp[i][j] = Integer.MAX_VALUE;
+                int val = grid[i][j];
+                if (j != i1){
+                    dp[i][j] = dp[i-1][i1] + val;
+                }else {
+                    dp[i][j] = dp[i-1][i2] + val;
+                }
+                if (dp[i][j] < (ti1 == -1 ? Integer.MAX_VALUE : dp[i][ti1])){
+                    ti2 = ti1;
+                    ti1 = j;
+                } else if (dp[i][j] < (ti2 == -1 ? Integer.MAX_VALUE : dp[i][ti2])) {
+                    ti2 = j;
+                }
+            }
+            i1 = ti1;
+            i2 = ti2;
+        }
+        int val = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++){
+            val = Math.min(val, dp[n-1][i]);
+        }
+        return val;
+    }
+
     public static void main(String[] args) {
         int[][] matrix = new int[][]{
                 {2,2,1,2,2},{2,2,1,2,2},{2,2,1,2,2},{2,2,1,2,2},{2,2,1,2,2}
@@ -64,6 +104,6 @@ public class MinFallingPathSum {
         int[][] grid = new int[][]{
                 {7}
         };
-        System.out.println(minFallingPathSum2(matrix));
+        System.out.println(minFallingPathSum3(matrix));
     }
 }
